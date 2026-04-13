@@ -10,19 +10,19 @@
   },
   {
     "id": 2,
-    "name": "Speedometer Neon",
-    "desc": "Speedometer dengan efek neon dan indikator RPM animasi.",
+    "name": "@C-MOD-auto checkpoint.luan",
+    "desc": "Tools Untuk Membantu player baru diserver mana pun dan membuat cepat kaya! .",
     "category": "HUD",
-    "file": "mods/speedometer_neon.lua",
-    "size": "18 KB",
-    "date": "2024-01-02"
+    "file": "mods/@C-MOD-auto checkpoint.lua",
+    "size": "9KB",
+    "date": "2025-01-02"
   },
   {
     "id": 3,
     "name": "Anti-Lag Lite",
     "desc": "Script optimasi ringan untuk mengurangi lag di server padat.",
     "category": "Script",
-    "file": "mods/antilag_lite.lua",
+    "file": "mods/cmod.lua",
     "size": "8 KB",
     "date": "2024-01-03"
   },
@@ -31,7 +31,7 @@
     "name": "Chat Logger",
     "desc": "Simpan log chat otomatis ke file teks setiap sesi bermain.",
     "category": "Script",
-    "file": "mods/chat_logger.lua",
+    "file": "mods/Twxtdraw cmod.lua",
     "size": "6 KB",
     "date": "2024-01-04"
   },
