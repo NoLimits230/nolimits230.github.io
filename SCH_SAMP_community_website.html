@@ -1,0 +1,272 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; }
+  :root {
+    --green: #00c853;
+    --green-dark: #007c31;
+    --green-dim: #00c85320;
+    --green-glow: #00c85340;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --surface3: #222222;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --muted: #888;
+  }
+  .page { max-width: 430px; margin: 0 auto; background: #0a0a0a; min-height: 100vh; }
+
+  /* NAV */
+  .nav { background: #0a0a0aee; border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-logo-dot { width: 28px; height: 28px; background: var(--green); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #000; }
+  .nav-title { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .nav-badge { background: var(--green-dim); border: 1px solid var(--green-dark); color: var(--green); font-size: 10px; padding: 3px 8px; border-radius: 20px; }
+
+  /* HERO */
+  .hero { padding: 32px 20px 28px; text-align: center; background: linear-gradient(180deg, #0a1a10 0%, #0a0a0a 100%); border-bottom: 1px solid var(--border); }
+  .hero-tag { display: inline-block; background: var(--green-dim); border: 1px solid var(--green-dark); color: var(--green); font-size: 10px; padding: 4px 12px; border-radius: 20px; letter-spacing: 1.5px; margin-bottom: 16px; }
+  .hero h1 { font-size: 28px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 8px; }
+  .hero h1 span { color: var(--green); }
+  .hero p { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  .hero-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--green); color: #000; font-size: 13px; font-weight: 700; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; }
+  .btn-outline { background: transparent; color: var(--green); font-size: 13px; font-weight: 600; padding: 10px 20px; border-radius: 8px; border: 1px solid var(--green-dark); cursor: pointer; }
+  .hero-stats { display: flex; justify-content: center; gap: 24px; margin-top: 28px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 20px; font-weight: 800; color: var(--green); }
+  .stat-lbl { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+
+  /* SECTION */
+  .section { padding: 28px 20px; }
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--muted); }
+
+  /* VIDEO */
+  .video-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; cursor: pointer; }
+  .video-thumb { width: 100%; height: 180px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative; }
+  .video-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .play-btn { position: absolute; width: 48px; height: 48px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .play-btn::after { content: ''; border-left: 18px solid #000; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 4px; }
+  .video-info { padding: 14px; }
+  .video-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .video-meta { font-size: 11px; color: var(--muted); }
+
+  /* MOD CARDS */
+  .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mod-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: border-color 0.2s; }
+  .mod-card:hover { border-color: var(--green-dark); }
+  .mod-icon { width: 40px; height: 40px; background: var(--green-dim); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .mod-icon svg { width: 20px; height: 20px; fill: var(--green); }
+  .mod-name { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .mod-type { font-size: 10px; color: var(--green); background: var(--green-dim); padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
+  .mod-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* SHOP */
+  .shop-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 12px; cursor: pointer; }
+  .shop-img { width: 56px; height: 56px; background: var(--green-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .shop-img svg { width: 26px; height: 26px; fill: var(--green); }
+  .shop-info { flex: 1; }
+  .shop-name { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+  .shop-desc { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .shop-price { font-size: 15px; font-weight: 800; color: var(--green); }
+  .shop-btn { background: var(--green); color: #000; font-size: 11px; font-weight: 700; padding: 7px 14px; border-radius: 7px; border: none; cursor: pointer; flex-shrink: 0; }
+
+  /* COMMUNITY BANNER */
+  .community-banner { margin: 0 20px 28px; background: linear-gradient(135deg, #0a1a10, #111); border: 1px solid var(--green-dark); border-radius: 14px; padding: 22px 20px; text-align: center; }
+  .community-banner h3 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .community-banner p { font-size: 12px; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+  .community-btns { display: flex; gap: 8px; justify-content: center; }
+  .discord-btn { background: #5865f2; color: #fff; font-size: 12px; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: none; cursor: pointer; }
+  .wa-btn { background: #25d366; color: #000; font-size: 12px; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: none; cursor: pointer; }
+
+  /* FOOTER */
+  .footer { border-top: 1px solid var(--border); padding: 20px; text-align: center; }
+  .footer-logo { font-size: 16px; font-weight: 800; color: var(--green); margin-bottom: 6px; }
+  .footer-sub { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+  .footer-links { display: flex; justify-content: center; gap: 16px; }
+  .footer-links a { font-size: 11px; color: var(--muted); text-decoration: none; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 6px; padding: 0 20px; margin-bottom: 20px; overflow-x: auto; }
+  .tab { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 20px; border: none; cursor: pointer; white-space: nowrap; }
+  .tab.active { background: var(--green); color: #000; }
+</style>
+
+<div class="page">
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <div class="nav-logo-dot">S</div>
+      <span class="nav-title">SCH SAMP</span>
+    </div>
+    <span class="nav-badge">ONLINE</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">SA:MP COMMUNITY INDONESIA</div>
+    <h1>Mod Terbaik<br><span>Komunitas SCH</span></h1>
+    <p>Temukan, preview, dan dapatkan mod Lua SA:MP eksklusif buatan komunitas kami. Kualitas premium, harga terjangkau.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Lihat Mod</button>
+      <button class="btn-outline">Beli Sekarang</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">120+</div><div class="stat-lbl">MOD AKTIF</div></div>
+      <div class="stat"><div class="stat-num">2.4K</div><div class="stat-lbl">MEMBER</div></div>
+      <div class="stat"><div class="stat-num">99%</div><div class="stat-lbl">SATISFIED</div></div>
+    </div>
+  </div>
+
+  <!-- VIDEO SHOWCASE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">KONTEN TERBARU</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="video-card" onclick="window.open('https://youtube.com/@SCH_SAMP','_blank')">
+      <div class="video-thumb" style="background: #0a1a10; position:relative; display:flex; align-items:center; justify-content:center;">
+        <svg width="60" height="60" viewBox="0 0 60 60" style="opacity:0.3;"><rect width="60" height="60" rx="8" fill="#00c853"/><polygon points="23,18 23,42 45,30" fill="#000"/></svg>
+        <div class="play-btn" style="position:absolute;"></div>
+        <div style="position:absolute; bottom:10px; left:12px; font-size:10px; color:#00c853; background:#0a0a0aaa; padding:3px 8px; border-radius:4px;">PREVIEW MOD TERBARU</div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">SCH — Mod Lua Drift System V3</div>
+        <div class="video-meta">SCH SAMP Official · 12K views · 3 hari lalu</div>
+      </div>
+    </div>
+
+    <div class="video-card" onclick="window.open('https://youtube.com/@SCH_SAMP','_blank')">
+      <div class="video-thumb" style="background: #101a10; position:relative; display:flex; align-items:center; justify-content:center;">
+        <svg width="60" height="60" viewBox="0 0 60 60" style="opacity:0.3;"><rect width="60" height="60" rx="8" fill="#00c853"/><polygon points="23,18 23,42 45,30" fill="#000"/></svg>
+        <div class="play-btn" style="position:absolute;"></div>
+        <div style="position:absolute; bottom:10px; left:12px; font-size:10px; color:#00c853; background:#0a0a0aaa; padding:3px 8px; border-radius:4px;">TUTORIAL INSTALASI</div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Cara Install Mod SCH di SA:MP</div>
+        <div class="video-meta">SCH SAMP Official · 8.2K views · 1 minggu lalu</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOD PREVIEW -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-header">
+      <div class="section-title">MOD SHOWCASE</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active">Semua</button>
+      <button class="tab">Drift</button>
+      <button class="tab">HUD</button>
+      <button class="tab">Script</button>
+      <button class="tab">Vehicle</button>
+    </div>
+
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+        </div>
+        <div class="mod-name">Drift System V3</div>
+        <div class="mod-type">DRIFT</div>
+        <div class="mod-desc">Sistem drift realistis dengan counter dan leaderboard.</div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <div class="mod-name">SCH HUD Pro</div>
+        <div class="mod-type">HUD</div>
+        <div class="mod-desc">HUD modern dengan animasi smooth dan info lengkap.</div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.06 15.73 0 13 0c-1.56 0-2.93.79-3.74 2.03L12 4.84l2.78-2.78C15.17 2.26 16 2 16.5 2 18 2 19 3.03 19 4.64c0 .72-.29 1.37-.77 1.86L17 8H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2h-2z"/></svg>
+        </div>
+        <div class="mod-name">Race Timer</div>
+        <div class="mod-type">SCRIPT</div>
+        <div class="mod-desc">Timer balapan presisi dengan checkpoint otomatis.</div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93C9.33 17.79 7 14.5 7 11V7.18L12 5z"/></svg>
+        </div>
+        <div class="mod-name">Anti-Lag Pro</div>
+        <div class="mod-type">SCRIPT</div>
+        <div class="mod-desc">Optimasi performa server dan client SA:MP.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOP -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-header">
+      <div class="section-title">TOKO MOD LUA</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-img">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Drift System V3</div>
+        <div class="shop-desc">Full source Lua · Update gratis · Support 24/7</div>
+        <div class="shop-price">Rp 45.000</div>
+      </div>
+      <button class="shop-btn">Beli</button>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-img">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">SCH HUD Pro Pack</div>
+        <div class="shop-desc">3 tema · Custom warna · Anti-flicker</div>
+        <div class="shop-price">Rp 35.000</div>
+      </div>
+      <button class="shop-btn">Beli</button>
+    </div>
+
+    <div class="shop-card">
+      <div class="shop-img">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Bundle Starter Pack</div>
+        <div class="shop-desc">5 mod pilihan · Hemat 40% · Termasuk tutorial</div>
+        <div class="shop-price">Rp 75.000</div>
+      </div>
+      <button class="shop-btn">Beli</button>
+    </div>
+  </div>
+
+  <!-- COMMUNITY -->
+  <div class="community-banner">
+    <h3>Gabung Komunitas SCH</h3>
+    <p>Bergabung dengan 2.400+ member aktif. Diskusi, request mod, dan dapatkan update eksklusif!</p>
+    <div class="community-btns">
+      <button class="discord-btn">Discord</button>
+      <button class="wa-btn">WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">SCH SAMP</div>
+    <div class="footer-sub">SA:MP Community Indonesia · Mod Lua Terbaik</div>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">Mod</a>
+      <a href="#">Shop</a>
+      <a href="#">Contact</a>
+    </div>
+    <div style="margin-top:14px; font-size:10px; color:#444;">© 2024 SCH SAMP Community. All rights reserved.</div>
+  </div>
+</div>
